@@ -37,7 +37,7 @@ router.use(bodyParser.json());
 router.use("/teaching-be/api", mainRoutes);
 
 //Express functionality for port used on listening for requests
-router.listen(config.server.port, () => {
+router.listen(process.env.PORT || config.server.port, () => {
     console.log(`Server is listening on port ${config.server.port}`);
 });
 
