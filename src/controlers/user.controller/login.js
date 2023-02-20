@@ -34,16 +34,16 @@ const login = async (req, res, _next) => {
 
     user.loggedIn = true;
 
-    const accessToken = jwt.sign({payload: { x: 1, y: '2'}}, process.env.ACCESS_TOKEN_SECRET, (err) => {
+    /*const accessToken = jwt.sign({payload: { x: 1, y: '2'}}, process.env.ACCESS_TOKEN_SECRET, (err) => {
       if (err) {
        return res.status(400).json({err: err});
       };
-    });
+    });*/
 
     return res.status(200).json({
       message: 'Successfully logged in',
       user,
-      accessToken
+      // accessToken
     });
   } catch (error) {
     console.error(error);
