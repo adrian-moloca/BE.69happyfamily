@@ -1,13 +1,19 @@
 import User from '../../models/user.model.js';
+import validateBodyRequest from '../../utils/validateBodyRequest.js';
 
 const register = async (req, res, _next) => {
   try {
+    const { isUndefined, message } = validateBodyRequest(req.body);
     const { userName, password, age } = req.body;
 
-    if (typeof userName === 'undefined' || typeof password === 'undefined' || typeof age === 'undefined') {
-      return res.status(400).json({
-        error: 'Username, Password and Age required'
-      });
+    // if (typeof userName === 'undefined' || typeof password === 'undefined' || typeof age === 'undefined') {
+    //   return res.status(400).json({
+    //     error: 'Username, Password and Age required'
+    //   });
+    // }
+
+    if(isUndefined === true){
+      return res.status(400).json({message: message});
     }
 
     if (typeof userName !== 'string' || typeof password !== 'string' || typeof age !== 'number') {

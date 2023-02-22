@@ -9,7 +9,6 @@ const userSchema = new mongoose.Schema(
     lastName: { type: String, required: false },
     vaccinated: { type: Boolean, default: false },
     loggedIn: {type: Boolean, default: false},
-    isAdmin: {type: Boolean, default: false}
   },
   {
     timestamps: true
