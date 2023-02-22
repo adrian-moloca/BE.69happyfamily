@@ -6,7 +6,7 @@ const register = async (req, res, _next) => {
 
     if (typeof userName === 'undefined' || typeof password === 'undefined' || typeof age === 'undefined') {
       return res.status(400).json({
-        error: 'Username and Password required'
+        error: 'Username, Password and Age required'
       });
     }
 
