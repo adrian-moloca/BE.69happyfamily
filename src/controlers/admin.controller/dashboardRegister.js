@@ -39,6 +39,19 @@ const dashboardRegister = async (req, res, _next) => {
         })
       }
 
+        const whitelistedEmail = process.env.WHITELIST.split(',').map((email) => {
+          if (condition){}
+        })
+        console.log(whitelistedEmail);
+
+        const adminEmailExists = await Admin.findOne({email: email});
+
+        if (adminEmailExists){
+          return res.status(409).json({
+            error: "Conflict. Admin user with this email already exists"
+          });
+        };
+
       const adminExists = await Admin.findOne({ userName: userName });
 
       if (adminExists) {
@@ -65,7 +78,11 @@ const dashboardRegister = async (req, res, _next) => {
             adminUser
           });
         })
-        .catch((err) => console.error(err));
+        .catch((err) => {
+        return res.status(500).json({
+          err: err
+        });
+        });
     } catch (error) {
       console.error(error);
     }

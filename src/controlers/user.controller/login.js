@@ -34,16 +34,16 @@ const login = async (req, res, _next) => {
 
     user.loggedIn = true;
 
-    const accessToken = jwt.sign({
-      data: process.env.ACCESS_TOKEN_SECRET
-    }, 'secret' , { expiresIn: '1h' });
+    // const accessToken = jwt.sign({
+    //   data: process.env.ACCESS_TOKEN_SECRET
+    // }, 'secret' , { expiresIn: '1h' });
 
-    console.log(accessToken);
+    // console.log(accessToken);
 
     return res.status(200).json({
       message: 'Successfully logged in',
-      user: user,
-      accessToken: accessToken
+      user: user
+      // accessToken: accessTokene
     });
   } catch (error) {
     console.error(error);
