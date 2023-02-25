@@ -1,7 +1,9 @@
-import User from '../../models/user.model.js';
+import User from '../../models/user.model';
 import 'dotenv/config';
+import IReqLogin from '../../interfaces/reqLogin.interface';
+import IResLogin from '../../interfaces/resLogin.interface';
 
-const login = async (req: any, res: any, _next: any) => {
+const login = async (req: IReqLogin, res, _next) => {
   try {
     const { userName, password } = req.body;
 
