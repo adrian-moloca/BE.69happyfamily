@@ -1,8 +1,7 @@
 import User from '../../models/user.model.js';
-import jwt from 'jsonwebtoken';
 import 'dotenv/config';
 
-const login = async (req, res, _next) => {
+const login = async (req: any, res: any, _next: any) => {
   try {
     const { userName, password } = req.body;
 
@@ -34,16 +33,9 @@ const login = async (req, res, _next) => {
 
     user.loggedIn = true;
 
-    // const accessToken = jwt.sign({
-    //   data: process.env.ACCESS_TOKEN_SECRET
-    // }, 'secret' , { expiresIn: '1h' });
-
-    // console.log(accessToken);
-
     return res.status(200).json({
       message: 'Successfully logged in',
       user: user
-      // accessToken: accessTokene
     });
   } catch (error) {
     console.error(error);
