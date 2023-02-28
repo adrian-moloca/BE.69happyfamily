@@ -1,9 +1,8 @@
-import Admin from "../../models/admin.model";
+import Admin from "../../models/admin.model.js";
 
 const dashboardLogin = async (req, res, _next) => {
+  const { userName, password } = req.body;
     try {
-        const { userName, password } = req.body;
-
         if (typeof userName === 'undefined' || typeof password === 'undefined') {
           return res.status(400).json({
             error: 'Username and Password required'
