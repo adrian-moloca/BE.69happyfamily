@@ -56,9 +56,9 @@ const dashboardRegister = async (req, res, _next) => {
       });
     }
 
-    const adminExists = await Admin.findOne({ userName: userName });
+    const userNameExists = await Admin.findOne({ userName: userName });
 
-    if (adminExists) {
+    if (userNameExists) {
       return res.status(409).json({
         error: "Admin user already exists",
       });
