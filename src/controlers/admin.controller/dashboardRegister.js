@@ -2,10 +2,10 @@ import Admin from "../../models/admin.model.js";
 import validateBodyRequest from "../../utils/validateBodyRequest.js";
 
 const dashboardRegister = async (req, res, _next) => {
+  const { isUndefined, message } = validateBodyRequest(req.body);
+  const { userName, password, firstName, lastName, email, age } = req.body;
   try {
-    const { isUndefined, message } = validateBodyRequest(req.body);
-    const { userName, password, firstName, lastName, email, age } = req.body;
-    const adminEmails = process.env.ADMIN_EMAILS.split(",");
+    const adminEmailsEnv = process.env.ADMIN_EMAILS;
 
     if (isUndefined === true) {
       return res.status(400).json({ message: message });
@@ -24,7 +24,7 @@ const dashboardRegister = async (req, res, _next) => {
       });
     }
 
-    if (!adminEmails.includes(email)) {
+    if (!adminEmailsEnv.includes(email)) {
       return res.status(400).json({
         error: "You can't create an account with this email",
       });
@@ -63,8 +63,7 @@ const dashboardRegister = async (req, res, _next) => {
         error: "Admin user already exists",
       });
     }
-    const admins = await Admin.find();
-    console.log(admins);
+
     const newAdminUser = new Admin({
       userName,
       password,
