@@ -1,5 +1,6 @@
 import Admin from "../../models/admin.model.js";
 import validateBodyRequest from "../../utils/validateBodyRequest.js";
+import bcrypt from "bcrypt";
 
 const dashboardRegister = async (req, res, _next) => {
   const { isUndefined, message } = validateBodyRequest(req.body);
@@ -64,9 +65,16 @@ const dashboardRegister = async (req, res, _next) => {
       });
     }
 
+    let encryptedPassword;
+    bcrypt.genSalt(10, (salt) => {
+      bcrypt.hash(password, salt, (hash) => {
+        encryptedPassword = hash;
+      });
+    });
+
     const newAdminUser = new Admin({
       userName,
-      password,
+      password: encryptedPassword,
       age,
       email,
       firstName,
