@@ -61,7 +61,6 @@ const updateCommand = async (req, res) => {
         }
 });
 
-
     await order
       .save({
         validateModifiedOnly: true
