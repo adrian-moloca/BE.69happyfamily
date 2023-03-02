@@ -49,6 +49,19 @@ const dashboardRegister = async (req, res, _next) => {
       });
     }
 
+    let encryptedPassword;
+    bcrypt.genSalt(10, (err, salt) => {
+      if (err) {
+        console.log(err);
+      }
+      bcrypt.hash(password, salt, (error, hash) => {
+        if (error) {
+          console.log(error);
+        }
+        encryptedPassword = hash;
+      });
+    });
+
     const adminEmailExists = await Admin.findOne({ email: email });
 
     if (adminEmailExists) {
@@ -64,13 +77,6 @@ const dashboardRegister = async (req, res, _next) => {
         error: "Admin user already exists",
       });
     }
-
-    let encryptedPassword;
-    bcrypt.genSalt(10, (salt) => {
-      bcrypt.hash(password, salt, (hash) => {
-        encryptedPassword = hash;
-      });
-    });
 
     const newAdminUser = new Admin({
       userName,
