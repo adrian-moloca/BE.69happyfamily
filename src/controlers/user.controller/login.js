@@ -1,16 +1,20 @@
 import User from '../../models/user.model.js';
 import jwt from 'jsonwebtoken';
 import 'dotenv/config';
+import validateProperty from '../../utils/validators/validateProperty.js';
+import createToken from '../utils/token/createToken.js';
 
 const login = async (req, res, _next) => {
   try {
     const { userName, password } = req.body;
 
-    if (typeof userName === 'undefined' || typeof password === 'undefined') {
+    if (!validateProperty(userName) || !validateProperty(password)) {
       return res.status(400).json({
         error: 'Username and Password required'
       });
     }
+
+    const userUname = await User.findOne({userName: userName});
 
     if (typeof userName !== 'string' || typeof password !== 'string') {
       return res.status(400).json({
@@ -34,16 +38,13 @@ const login = async (req, res, _next) => {
 
     user.loggedIn = true;
 
-    // const accessToken = jwt.sign({
-    //   data: process.env.ACCESS_TOKEN_SECRET
-    // }, 'secret' , { expiresIn: '1h' });
-
-    // console.log(accessToken);
+    const { accessToken, refreshToken } = createToken(userUname);
 
     return res.status(200).json({
       message: 'Successfully logged in',
-      user: user
-      // accessToken: accessTokene
+      user: user,
+      accessToken,
+      refreshToken
     });
   } catch (error) {
     console.error(error);
