@@ -1,5 +1,4 @@
 import User from '../../models/user.model.js';
-import jwt from 'jsonwebtoken';
 import 'dotenv/config';
 import validateProperty from '../../utils/validators/validateProperty.js';
 import createToken from '../utils/token/createToken.js';
