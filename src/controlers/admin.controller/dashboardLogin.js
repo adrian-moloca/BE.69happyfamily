@@ -1,10 +1,11 @@
 import Admin from "../../models/admin.model.js";
 import bcrypt from "bcrypt";
+import validateProperty from '../../utils/validators/validateProperty.js';
 
 const dashboardLogin = async (req, res, _next) => {
   const { userName, password } = req.body;
   try {
-    if (typeof userName === "undefined" || typeof password === "undefined") {
+    if (!validateProperty(userName) || !validateProperty(userName)) {
       return res.status(400).json({
         error: "Username and Password required",
       });
