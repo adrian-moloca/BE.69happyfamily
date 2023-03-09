@@ -9,7 +9,9 @@ const getOrder = async (req, res) => {
             .findOne({_id: orderId})
             .then((order) => {
                 if(!order){
-                    return res.status(404).json({ error: "Not found"});
+                    return res.status(404).json({
+                        error: "Not found"
+                    });
                 }
 
                 return res.status(200).json({
