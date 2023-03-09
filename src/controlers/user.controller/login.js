@@ -2,6 +2,7 @@ import User from '../../models/user.model.js';
 import 'dotenv/config';
 import validateProperty from '../../utils/validators/validateProperty.js';
 import createToken from '../utils/token/createToken.js';
+import verifyDataType from '../../utils/verify/verifyDataType.js';
 
 const login = async (req, res, _next) => {
   try {
@@ -15,7 +16,7 @@ const login = async (req, res, _next) => {
 
     const userUname = await User.findOne({userName: userName});
 
-    if (typeof userName !== 'string' || typeof password !== 'string') {
+    if (!verifyDataType(userName, 'string') || !verifyDataType(password, 'string')) {
       return res.status(400).json({
         error: 'Username and Password must be of string type'
       });
