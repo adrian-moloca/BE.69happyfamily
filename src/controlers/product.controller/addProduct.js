@@ -5,11 +5,11 @@ const addProduct = async (req, res, next) => {
     const { title, price, description, category, image } = req.body;
 
     if (
-      (typeof title) === 'undefined' ||
-      (typeof price) === 'undefined' ||
-      (typeof description) === 'undefined' ||
-      (typeof category) === 'undefined' ||
-      (typeof image) === 'undefined'
+      verifyDataType(title, 'undefined') ||
+      verifyDataType(price, 'undefined') ||
+      verifyDataType(description, 'undefined') ||
+      verifyDataType(category, 'undefined') ||
+      verifyDataType(image, 'undefined')
     ) {
       return res.status(400).json({
         error: 'Field missing'
@@ -17,11 +17,11 @@ const addProduct = async (req, res, next) => {
     }
 
     if (
-      (typeof title) !== 'string' ||
-      (typeof price) !== 'number' ||
-      (typeof description) !== 'string' ||
-      (typeof category) !== 'string' ||
-      (typeof image) !== 'string'
+      !verifyDataType(title, 'string') ||
+      !verifyDataType(price, 'number') ||
+      !verifyDataType(description, 'string') ||
+      !verifyDataType(category, 'string') ||
+      !verifyDataType(image, 'string')
     ) {
       return res.status(400).json({
         error: 'Invalid type of'
