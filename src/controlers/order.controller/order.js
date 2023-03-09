@@ -7,13 +7,13 @@ const createOrder = async (req, res, next) => {
 
         const {client, products} = req.body;
         
-        if((typeof client) === 'undefined' || (typeof products) === 'undefined'){
+        if(verifyDataType(client, 'undefined') || verifyDataType(products, 'undefined')){
             return res.status(400).json({
                 error: 'Field missing'
               });
         }
 
-        if((typeof client) !== 'string' || (typeof products) !== 'object'){
+        if(!verifyDataType(client, 'string') || !verifyDataType(products, 'object')){
             return res.status(400).json({
                 error: 'Invalid data type drq'
               });
