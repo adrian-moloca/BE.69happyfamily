@@ -20,7 +20,7 @@ const updateCommand = async (req, res) => {
       });
     }
 
-    if (typeof productId !== 'string' || typeof quantity !== 'number') {
+    if (!verifyDataType(productId, 'string') || !verifyDataType(quantity, 'number')) {
       return res.status(400).json({
         error: 'Bad type'
       });
