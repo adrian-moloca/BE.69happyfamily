@@ -10,7 +10,7 @@ const deleteProductsById = async (req, res, next) => {
             });
         }
 
-        if((typeof _id) !== 'string'){
+        if(!verifyDataType(_id, 'string')){
             return res.status(500).json({
                 error: "Id is not of String type"
             });
