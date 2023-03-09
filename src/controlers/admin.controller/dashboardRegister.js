@@ -13,12 +13,12 @@ const dashboardRegister = async (req, res, _next) => {
     }
 
     if (
-      typeof userName !== "string" ||
-      typeof password !== "string" ||
-      typeof age !== "number" ||
-      typeof firstName !== "string" ||
-      typeof lastName !== "string" ||
-      typeof email !== "string"
+      !verifyDataType(userName, 'string') ||
+      !verifyDataType(password, 'string') ||
+      !verifyDataType(age, 'number') ||
+      !verifyDataType(firstName, 'string') ||
+      !verifyDataType(lastName, 'string') ||
+      !verifyDataType(email, 'string')
     ) {
       return res.status(400).json({
         error: "Invalid type",
