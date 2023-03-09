@@ -1,5 +1,6 @@
 import User from '../../models/user.model.js';
 import validateBodyRequest from '../../utils/validateBodyRequest.js';
+import verifyDataType from '../../utils/verify/verifyDataType.js';
 
 const register = async (req, res, _next) => {
   try {
@@ -16,7 +17,9 @@ const register = async (req, res, _next) => {
       return res.status(400).json({message: message});
     }
 
-    if (typeof userName !== 'string' || typeof password !== 'string' || typeof age !== 'number') {
+    if (!verifyDataType(userName, 'string') ||
+        !verifyDataType(password, 'string') ||
+        !verifyDataType(age, 'number')) {
       return res.status(400).json({
         error: 'Invalid type'
       });
