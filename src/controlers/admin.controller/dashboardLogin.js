@@ -5,7 +5,7 @@ import validateProperty from '../../utils/validators/validateProperty.js';
 const dashboardLogin = async (req, res, _next) => {
   const { userName, password } = req.body;
   try {
-    if (!validateProperty(userName) || !validateProperty(userName)) {
+    if (!validateProperty(userName) || !validateProperty(password)) {
       return res.status(400).json({
         error: "Username and Password required",
       });
