@@ -50,7 +50,7 @@ const dashboardRegister = async (req, res, _next) => {
     }
 
     let encryptedPassword;
-    bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.genSalt(10, (salt, err) => {
       if (err) {
         console.log(err);
       }
