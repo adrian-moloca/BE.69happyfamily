@@ -28,11 +28,11 @@ const updateUser = async (req, res) => {
             }
         
             if(
-                (typeof userName) !== 'string' ||
-                (typeof password) !== 'string' ||
-                (typeof firstName) !== 'string' ||
-                (typeof age) !== 'number' ||
-                (typeof lastName) !== 'string') {
+                !verifyDataType(userName, 'string') ||
+                !verifyDataType(password, 'string') ||
+                !verifyDataType(firstName, 'string') ||
+                !verifyDataType(age, 'number') ||
+                !verifyDataType(lastName, 'string')) {
                     return res.status(400).json({
                         error: "Invalid data type for one of the fields"
                     })
