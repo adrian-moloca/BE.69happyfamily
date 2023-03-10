@@ -1,4 +1,4 @@
-import adminModel from "../../models/admin.model";
+import adminModel from "../../models/admin.model.js";
 
 const deleteAdmin = async (req, res, _next) => {
 
