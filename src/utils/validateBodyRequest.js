@@ -4,7 +4,8 @@ const validateBodyRequest = (bodyRequestObj) => {
     const data = Object.entries(bodyRequestObj);
     let isUndefined = false;
     let message = '';
-    for(let i = 0; i < data.length; i++){
+    const dataLength = data.length;
+    for(let i = 0; i < dataLength; i++){
         if(data[i][1] === ''){
             message = `${data[i][0]} cannot be undefined`;
             isUndefined = true;
