@@ -1,6 +1,6 @@
 import Admin from "../../models/admin.model.js";
 
-const getAdmin = async (req, res, _next) => {
+const getAdmin = async (_req, res, _next) => {
     try {
 
         await 
