@@ -1,6 +1,8 @@
 import Admin from "../../models/admin.model.js";
 import validateBodyRequest from "../../utils/validators/validateBodyRequest.js";
 import bcrypt from "bcrypt";
+import verifyDataType from "../../utils/verify/verifyDataType.js";
+
 
 const dashboardRegister = async (req, res, _next) => {
   const { isUndefined, message } = validateBodyRequest(req.body);
@@ -13,12 +15,12 @@ const dashboardRegister = async (req, res, _next) => {
     }
 
     if (
-      !verifyDataType(userName, 'string') ||
-      !verifyDataType(password, 'string') ||
-      !verifyDataType(age, 'number') ||
-      !verifyDataType(firstName, 'string') ||
-      !verifyDataType(lastName, 'string') ||
-      !verifyDataType(email, 'string')
+      !verifyDataType(userName, "string") ||
+      !verifyDataType(password, "string") ||
+      !verifyDataType(age, "number") ||
+      !verifyDataType(firstName, "string") ||
+      !verifyDataType(lastName, "string") ||
+      !verifyDataType(email, "string")
     ) {
       return res.status(400).json({
         error: "Invalid type",
@@ -50,7 +52,7 @@ const dashboardRegister = async (req, res, _next) => {
     }
 
     let encryptedPassword;
-    bcrypt.genSalt(10, (salt, err) => {
+    bcrypt.genSalt(10, (err, salt) => {
       if (err) {
         console.log(err);
       }
