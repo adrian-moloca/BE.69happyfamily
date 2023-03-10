@@ -1,6 +1,6 @@
 import userModel from "../../models/user.model.js";
 
-const userDelete = async (req, res, next) => {
+const userDelete = async (req, res, _next) => {
     try {
 
         const { userId } = req.params;
