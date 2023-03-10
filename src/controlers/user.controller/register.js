@@ -1,5 +1,5 @@
 import User from '../../models/user.model.js';
-import validateBodyRequest from '../../utils/validateBodyRequest.js';
+import validateBodyRequest from '../../utils/validators/validateBodyRequest.js';
 import verifyDataType from '../../utils/verify/verifyDataType.js';
 
 const register = async (req, res, _next) => {

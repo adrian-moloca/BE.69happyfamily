@@ -1,5 +1,5 @@
 import Admin from "../../models/admin.model.js";
-import validateBodyRequest from "../../utils/validateBodyRequest.js";
+import validateBodyRequest from "../../utils/validators/validateBodyRequest.js";
 import bcrypt from "bcrypt";
 
 const dashboardRegister = async (req, res, _next) => {
