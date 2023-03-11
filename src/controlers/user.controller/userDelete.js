@@ -7,16 +7,17 @@ const userDelete = async (req, res, _next) => {
 
              await userModel
             .findByIdAndDelete(userId)
+            .then(() => {
+                return res.status(200).json({
+                    deleted: "Successfully deleted user"
+                });
+            })
             .catch(() => {
                 return res.status(500).json({
                     error: "Couldn't delete user"
                 })
             })
 
-            return res.status(200).json({
-                deleted: "Successfully deleted user"
-            });
-        
     } catch (error) {
         return res.status(500).json({
             error: error
