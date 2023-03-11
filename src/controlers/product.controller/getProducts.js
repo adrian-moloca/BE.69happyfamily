@@ -1,6 +1,6 @@
 import Product from "../../models/product.model.js";
 
-const getProducts = async (req, res, next) => {
+const getProducts = async (_req, res, _next) => {
 
     try {
         
