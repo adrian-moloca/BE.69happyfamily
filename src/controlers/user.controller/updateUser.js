@@ -1,6 +1,6 @@
 import userModel from "../../models/user.model.js";
 
-const updateUser = async (req, res) => {
+const updateUser = async (req, res, _next) => {
     try {
         const { userId } = req.params;
 
