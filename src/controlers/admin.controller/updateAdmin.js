@@ -1,5 +1,6 @@
 import adminModel from "../../models/admin.model.js";
 import verifyDataType from "../../utils/verify/verifyDataType.js";
+import { regex } from "../utils/regex.js";
 
 const updateAdmin = async (req, res, _next) => {
     try {
@@ -63,11 +64,9 @@ const updateAdmin = async (req, res, _next) => {
             admin.lastName = lastName ? lastName : admin.lastName;
             admin.email = email ? email : admin.email;
 
-            let adminEmailsEnv = process.env.ADMIN_EMAILS;
-
-            if(!adminEmailsEnv.includes(email)){
+            if(!email.match(regex.email)){
                 return res.status(400).json({
-                    error: "Bad Request. Email not on whitelist"
+                    error: "Bad Request. Bad format"
                 })
             }
 
