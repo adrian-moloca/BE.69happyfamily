@@ -1,6 +1,6 @@
 import productModel from "../../models/product.model.js";
 
-const deleteProduct = async (req, res) => {
+const deleteProduct = async (req, res, _next) => {
     try {
 
         const { productId } = req.params;
