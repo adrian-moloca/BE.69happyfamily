@@ -1,6 +1,6 @@
 import productModel from "../../models/product.model.js";
 
-const updateProduct = async (req, res) => {
+const updateProduct = async (req, res, _next) => {
     try {
         const { productId } = req.params;
 
