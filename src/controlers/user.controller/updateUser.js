@@ -1,4 +1,5 @@
 import userModel from "../../models/user.model.js";
+import verifyDataType from "../../utils/verify/verifyDataType.js";
 
 const updateUser = async (req, res, _next) => {
     try {

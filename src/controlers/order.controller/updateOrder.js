@@ -1,6 +1,7 @@
 import orderModel from '../../models/order.model.js';
 // import Order from '../../models/order.model.js';
 import productModel from '../../models/product.model.js';
+import verifyDataType from '../../utils/verify/verifyDataType.js';
 
 const updateCommand = async (req, res) => {
   try {
@@ -8,7 +9,9 @@ const updateCommand = async (req, res) => {
 
     const { productId, quantity } = req.body;
 
-    let order = await orderModel.findById(orderId).catch((error) => {
+    let order = await orderModel
+      .findById(orderId)
+      .catch((error) => {
       return res.status(500).json({
         error: error
       });
@@ -20,7 +23,8 @@ const updateCommand = async (req, res) => {
       });
     }
 
-    if (!verifyDataType(productId, 'string') || !verifyDataType(quantity, 'number')) {
+    if (!verifyDataType(productId, 'string') ||
+        !verifyDataType(quantity, 'number')) {
       return res.status(400).json({
         error: 'Bad type'
       });
