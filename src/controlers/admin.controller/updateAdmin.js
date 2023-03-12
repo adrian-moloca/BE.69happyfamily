@@ -63,6 +63,14 @@ const updateAdmin = async (req, res, _next) => {
             admin.lastName = lastName ? lastName : admin.lastName;
             admin.email = email ? email : admin.email;
 
+            let adminEmailsEnv = process.env.ADMIN_EMAILS;
+
+            if(!adminEmailsEnv.includes(email)){
+                return res.status(400).json({
+                    error: "Bad Request. Email not on whitelist"
+                })
+            }
+
             await
                 admin
                 .save({
