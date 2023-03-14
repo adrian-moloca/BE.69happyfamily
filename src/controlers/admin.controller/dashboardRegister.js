@@ -92,6 +92,7 @@ const dashboardRegister = async (req, res, _next) => {
     await newAdminUser
       .save()
       .then((adminUser) => {
+        adminUser.password = undefined;
         adminUser.loggedIn = true;
         return res.status(201).json({
           message: "Admin User Created!",
